@@ -1,13 +1,6 @@
-//= require jquery
-//= require materialize
-
 globalSetStep = null;
 
-jq2 = jQuery.noConflict();
-jq2(function ($) {
-
-    const API_URL = 'https://hackhb18-t2-api.herokuapp.com';
-    const MY_DEVICE = '/devices/4/';
+$(function () {
 
     const username = $('#username');
     const password = $('#password');
@@ -32,35 +25,39 @@ jq2(function ($) {
             window.setTimeout(function () {
                 $('.circle-loader', currentPane).addClass('load-complete');
                 $('.checkmark', currentPane).show();
+                window.setTimeout(function () {
+                    window.location.href = '/status';
+                }, 2000);
             }, 2000);
         }
     }
 
     globalSetStep = setStep;
 
-    function apiRequest(method, route, success, error, payload) {
-        var headers;
-
-        payload = payload || null;
-
-        headers = {
-            'Authorization': 'JWT ' + token
-        };
-
-        $.ajax({
-            url: API_URL + route,
-            data: payload,
-            type: method,
-            headers: headers,
-            success: success,
-            error: error
-        });
+    function getParameterByName(name, url) {
+        if (!url) url = window.location.href;
+        name = name.replace(/[\[\]]/g, "\\$&");
+        var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
+            results = regex.exec(url);
+        if (!results) return null;
+        if (!results[2]) return '';
+        return decodeURIComponent(results[2].replace(/\+/g, " "));
     }
 
     function login() {
 
         var successHandler = function (res) {
             token = res['token'];
+            localStorage.setItem('jwt', token);
+
+            var redirect_uri = getParameterByName('redirect_uri', window.location.href);
+
+            if (redirect_uri) {
+                // TODO: Do sanity check
+                window.location.href = redirect_uri;
+                return;
+            }
+
             setStep(2);
         }
 
@@ -74,7 +71,7 @@ jq2(function ($) {
         }
 
         $.ajax({
-            url: API_URL + '/api-token-auth/',
+            url: JUSTIN.API_URL + '/api-token-auth/',
             type: 'POST',
             data: payload,
             success: successHandler,
@@ -96,7 +93,7 @@ jq2(function ($) {
 
         select.material_select();
 
-        var res = apiRequest('GET', '/products/', function (res) {
+        var res = JUSTIN.apiRequest('GET', '/products/', function (res) {
             res.forEach((product) => {
                 select.append($('<option>', {
                     value: product['url'],
@@ -119,7 +116,7 @@ jq2(function ($) {
             alert('Product update error');
         }
 
-        apiRequest('PATCH', MY_DEVICE, successHandler, errorHandler, {
+        JUSTIN.apiRequest('PATCH', JUSTIN.MY_DEVICE, successHandler, errorHandler, {
             product: url
         });
     }
@@ -138,7 +135,7 @@ jq2(function ($) {
 
     $("#set-product").click(function (e) {
         e.preventDefault();
-        setProduct();
+        setProduct($('#products').val());
     });
 
 });
