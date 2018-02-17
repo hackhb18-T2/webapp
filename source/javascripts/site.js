@@ -1,10 +1,13 @@
 //= require jquery
 //= require materialize
 
+globalSetStep = null;
+
 jq2 = jQuery.noConflict();
 jq2(function ($) {
 
     const API_URL = 'https://hackhb18-t2-api.herokuapp.com';
+    const MY_DEVICE = '/devices/4/';
 
     const username = $('#username');
     const password = $('#password');
@@ -16,15 +19,29 @@ jq2(function ($) {
 
     function setStep(step) {
         wizard.hide();
-        $(wizard[step-1]).show();
+
+        var currentPane = $(wizard[step - 1]);
+
+        currentPane.show();
 
         if (step == 3) {
             loadProducts();
         }
+
+        if (step == 4) {
+            window.setTimeout(function () {
+                $('.circle-loader', currentPane).addClass('load-complete');
+                $('.checkmark', currentPane).toggle();
+            }, 2000);
+        }
     }
 
-    function apiRequest(method, route, success, error) {
+    globalSetStep = setStep;
+
+    function apiRequest(method, route, success, error, payload) {
         var headers;
+
+        payload = payload || null;
 
         headers = {
             'Authorization': 'JWT ' + token
@@ -32,6 +49,7 @@ jq2(function ($) {
 
         $.ajax({
             url: API_URL + route,
+            data: payload,
             type: method,
             headers: headers,
             success: success,
@@ -91,8 +109,20 @@ jq2(function ($) {
         });
     }
 
-    function setProduct() {
-        // apiRequest('PATCH', '/device/4/', 
+    function setProduct(url) {
+
+        var successHandler = function (res) {
+            setStep(4);
+        }
+
+        var errorHandler = function (res) {
+            alert('Product update error');
+        }
+
+        apiRequest('PATCH', MY_DEVICE, successHandler, errorHandler, {
+            product: url
+        });
+        setStep(4);
     }
 
     $(".button-collapse").sideNav();
@@ -111,4 +141,5 @@ jq2(function ($) {
         e.preventDefault();
         setProduct();
     });
+
 });
