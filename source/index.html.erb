@@ -2,22 +2,93 @@
 title: Welcome to Middleman
 ---
 
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 340" class="middleman-logo" aria-labelledby="middleman-logo__title" role="img">
-  <title id="middleman-logo__title">Middleman</title>
-  <path class="middleman-logo__top-left-bar" fill-opacity=".45" d="M0 40L200 0v30L0 60z"/>
-  <path class="middleman-logo__top-right-bar" fill="#fff" d="M200 0l200 40v20L200 30z"/>
-  <path class="middleman-logo__left-m" fill-opacity=".45" d="M0 78v184l45 5V152l45 83 47-83v129l53 7V52l-57 8-43 83-43-70z"/>
-  <path class="middleman-logo__right-m" fill="#fff" d="M400 78v184l-45 5V152l-45 83-47-83v129l-53 7V52l57 8 43 83 43-70z"/>
-  <path class="middleman-logo__bottom-left-bar" fill-opacity=".45" d="M0 300l200 40v-30L0 280z"/>
-  <path class="middleman-logo__bottom-right-bar" fill="#fff" d="M200 340l200-40v-20l-200 30z"/>
-</svg>
+<nav>
+  <div class="nav-wrapper">
+    <a href="#!" class="brand-logo">Justin Time</a>
+    <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
+    <ul class="right hide-on-med-and-down">
+      <li><a href="#">Hilfe</a></li>
+    </ul>
+    <ul class="side-nav" id="mobile-demo">
+      <li><a href="#">Hilfe</a></li>
+    </ul>
+  </div>
+</nav>
 
-<h1>
-  Middleman is Running
-</h1>
+<div class="container">
 
-<%= link_to(
-  "Read Documentation",
-  "https://middlemanapp.com/basics/templating_language/",
-  target: "_blank"
-) %>
+  <div class="wizard-step" id="step-1">
+
+    <h3>Login</h3>
+
+    <p>Bitte melde dich an. <a href="#">Zugangsdaten vergessen?</a></p>
+
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="username" type="text" class="validate">
+            <label for="username">Username</label>
+          </div>
+        </div>
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="password" type="password" class="validate">
+            <label for="password">Password</label>
+          </div>
+        </div>
+        <div class="row">
+          <button id="login" class="btn waves-effect waves-light" type="submit" name="action">Login
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="wizard-step" id="step-2" style="display: none">
+
+    <h3>Gerät registrieren</h3>
+
+    <p>Bitte gib die Seriennummer deines Geräts ein!</p>
+
+    <div class="row">
+      <form class="col s12">
+        <div class="row">
+          <div class="input-field col s12">
+            <input id="serial" type="text" class="validate">
+            <label for="serial">Seriennummer</label>
+          </div>
+        </div>
+        <div class="row">
+          <button id="register-device" class="btn waves-effect waves-light" type="submit" name="action">Weiter
+            <i class="material-icons right">send</i>
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
+
+  <div class="wizard-step" id="step-3" style="display: none">
+
+    <h3>Produktauswahl</h3>
+
+    <p>Welches Produkt soll Justin für dich verwalten?</p>
+
+    <div class="input-field col s12">
+      <select id="products">
+        <option value="" disabled selected>Bitte auswählen</option>
+      </select>
+    </div>
+
+    <div class="row">
+      <button id="set-product" class="btn waves-effect waves-light" type="submit" name="action">Fertigstellen
+        <i class="material-icons right">send</i>
+      </button>
+    </div>
+
+  </div>
+
+</div>

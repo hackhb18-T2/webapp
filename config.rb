@@ -19,6 +19,8 @@ activate :directory_indexes
 # Append hashes to compiled assets
 activate :asset_hash
 
+activate :sprockets
+
 # With alternative layout
 # page '/path/to/file.html', layout: 'other_layout'
 
