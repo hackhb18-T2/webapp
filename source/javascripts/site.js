@@ -31,7 +31,7 @@ jq2(function ($) {
         if (step == 4) {
             window.setTimeout(function () {
                 $('.circle-loader', currentPane).addClass('load-complete');
-                $('.checkmark', currentPane).toggle();
+                $('.checkmark', currentPane).show();
             }, 2000);
         }
     }
@@ -122,7 +122,6 @@ jq2(function ($) {
         apiRequest('PATCH', MY_DEVICE, successHandler, errorHandler, {
             product: url
         });
-        setStep(4);
     }
 
     $(".button-collapse").sideNav();
