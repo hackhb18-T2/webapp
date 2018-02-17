@@ -1,10 +1,10 @@
 ---
-title: Welcome to Middleman
+title: Justin Time Setup Wizard
 ---
 
 <nav>
   <div class="nav-wrapper">
-    <a href="#!" class="brand-logo">Justin Time</a>
+    <a href="#!" class="brand-logo center">Justin Time</a>
     <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="material-icons">menu</i></a>
     <ul class="right hide-on-med-and-down">
       <li><a href="#">Hilfe</a></li>
@@ -19,7 +19,7 @@ title: Welcome to Middleman
 
   <div class="wizard-step" id="step-1">
 
-    <h3>Login</h3>
+    <h5>Login</h5>
 
     <p>Bitte melde dich an. <a href="#">Zugangsdaten vergessen?</a></p>
 
@@ -37,10 +37,12 @@ title: Welcome to Middleman
             <label for="password">Password</label>
           </div>
         </div>
-        <div class="row">
-          <button id="login" class="btn waves-effect waves-light" type="submit" name="action">Login
-            <i class="material-icons right">send</i>
-          </button>
+        <div class="row right-align">
+          <div class="buttons col s12">
+            <button id="login" class="btn waves-effect waves-light" type="submit" name="action">Login
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
         </div>
       </form>
     </div>
@@ -49,7 +51,7 @@ title: Welcome to Middleman
 
   <div class="wizard-step" id="step-2" style="display: none">
 
-    <h3>Gerät registrieren</h3>
+    <h5>Gerät registrieren</h5>
 
     <p>Bitte gib die Seriennummer deines Geräts ein!</p>
 
@@ -61,10 +63,12 @@ title: Welcome to Middleman
             <label for="serial">Seriennummer</label>
           </div>
         </div>
-        <div class="row">
-          <button id="register-device" class="btn waves-effect waves-light" type="submit" name="action">Weiter
-            <i class="material-icons right">send</i>
-          </button>
+        <div class="row right-align">
+          <div class="buttons col s12">
+            <button id="register-device" class="btn waves-effect waves-light" type="submit" name="action">Weiter
+              <i class="material-icons right">send</i>
+            </button>
+          </div>
         </div>
       </form>
     </div>
@@ -73,7 +77,7 @@ title: Welcome to Middleman
 
   <div class="wizard-step" id="step-3" style="display: none">
 
-    <h3>Produktauswahl</h3>
+    <h5>Produktauswahl</h5>
 
     <p>Welches Produkt soll Justin für dich verwalten?</p>
 
@@ -83,10 +87,12 @@ title: Welcome to Middleman
       </select>
     </div>
 
-    <div class="row">
-      <button id="set-product" class="btn waves-effect waves-light" type="submit" name="action">Fertigstellen
-        <i class="material-icons right">send</i>
-      </button>
+    <div class="row right-align">
+      <div class="buttons col s12">
+        <button id="set-product" class="btn waves-effect waves-light" type="submit" name="action">Fertigstellen
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
     </div>
 
   </div>
