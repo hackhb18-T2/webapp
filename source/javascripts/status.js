@@ -14,6 +14,8 @@ $(function () {
                 if (!toastElement) {
                     Materialize.toast($toastContent);
                 }
+            } else {
+                $('.toast').remove();
             }
         }
 
