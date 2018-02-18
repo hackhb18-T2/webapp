@@ -20,9 +20,7 @@ $(function () {
         }
 
         var error = function (res) {
-            if (res.status === 401) {
-                window.location.href = '/?redirect_uri=' + encodeURIComponent(window.location.href);
-            }
+            alert('Error');
         }
 
         JUSTIN.apiRequest('GET', '/devices/4/', success, error);

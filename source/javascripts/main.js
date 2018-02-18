@@ -31,7 +31,13 @@
                 type: method,
                 headers: headers,
                 success: success,
-                error: error
+                error: function (res) {
+                    if (res.status === 401) {
+                        window.location.href = '/?redirect_uri=' + encodeURIComponent(window.location.href);
+                    } else {
+                        error(res);
+                    }
+                }
             });
         }
     };
