@@ -28,5 +28,5 @@ $(function () {
         JUSTIN.apiRequest('GET', '/devices/4/', success, error);
     }
 
-    window.setInterval(pollWeight, 5000);
+    window.setInterval(pollWeight, 3000);
 });
