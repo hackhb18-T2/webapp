@@ -11,7 +11,7 @@
         MY_DEVICE: '/devices/4/',
 
         apiRequest: function (method, route, success, error, payload) {
-            var headers;
+            var headers, url;
 
             payload = payload || null;
 
@@ -19,8 +19,14 @@
                 'Authorization': 'JWT ' + localStorage.getItem('jwt')
             };
 
+            if (route.startsWith(API_URL)) {
+                url = route;
+            } else {
+                url = API_URL + route;
+            }
+
             $.ajax({
-                url: API_URL + route,
+                url: url,
                 data: payload,
                 type: method,
                 headers: headers,
